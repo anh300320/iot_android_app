@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SmartGarden</string>
+    <string name="humidity">Độ ẩm:</string>
+    <string name="humidity_value">80%</string>
+    <string name="watering_mode">Tưới tự động</string>
+    <string name="manual_watering">Tưới</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_btn_text">LOGIN</string>
+    <string name="temperature">Nhiệt độ</string>
+    <string name="garden_label">Vườn:</string>
+    <string name="seekbar_humidity_tag">Mức độ ẩm yêu cầu:</string>
+</resources>
