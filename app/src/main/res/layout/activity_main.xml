@@ -4,122 +4,191 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/garden_label"
-        android:text="@string/garden_label"
-        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/normal_margin"
-    />
+        android:layout_marginStart="15dp"
+        android:text="@string/garden_label"
+
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
 
     <Spinner
         android:id="@+id/garden_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/garden_label"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/normal_margin"
-        />
+
+       android:layout_width="0dp"
+
+        android:layout_height="100px"
+        app:layout_constraintBottom_toBottomOf="@id/garden_label"
+        app:layout_constraintStart_toEndOf="@id/garden_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/garden_label" />
 
     <TextView
         android:id="@+id/humidity_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+
+        android:layout_marginStart="15dp"
         android:text="@string/humidity"
         android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/garden_label"
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/humidity_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginEnd="30dp"
         android:text="@string/humidity_value"
         android:textSize="25sp"
-        app:layout_constraintLeft_toRightOf="@id/humidity_tag"
-        app:layout_constraintTop_toBottomOf="@id/garden_label"
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/humidity_tag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/humidity_tag" />
 
     <TextView
         android:id="@+id/temperature_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        android:layout_marginStart="15dp"
         android:text="@string/temperature"
         android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/humidity_tag"
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
     <TextView
         android:id="@+id/temperature_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginEnd="30dp"
         android:text="@string/humidity_value"
         android:textSize="25sp"
-        app:layout_constraintLeft_toRightOf="@id/temperature_tag"
-        app:layout_constraintTop_toBottomOf="@id/humidity_value"
-        android:layout_margin="10dp"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/temperature_tag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/temperature_tag" />
 
     <Switch
         android:id="@+id/switch_control"
-        android:layout_margin="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="30dp"
         android:text="@string/watering_mode"
         android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@id/temperature_value"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </Switch>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        tools:layout_editor_absoluteY="317dp"></Switch>
 
-    <LinearLayout
-        android:id="@+id/manual_control_segment"
+    <Switch
+        android:id="@+id/switch_watering_control"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/manual_watering"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        tools:layout_editor_absoluteY="258dp"></Switch>
+
+    <TextView
+        android:id="@+id/seekbar_humidity_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal_margin"
+        android:layout_marginStart="15dp"
+        android:text="@string/seekbar_humidity_tag"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+    <SeekBar
+        android:id="@+id/seekbar_humidity_threshold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/switch_control"
-        android:orientation="vertical"
-        >
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:maxHeight="30dp"
+        android:minHeight="20dp"
+        android:tooltipText="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="437dp" />
 
-        <Switch
-            android:id="@+id/switch_watering_control"
-            android:layout_margin="10dp"
-            android:text="@string/manual_watering"
-            android:textSize="25sp"
-            app:layout_constraintTop_toBottomOf="@id/humidity_value"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </Switch>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/garden" />
 
-        <TextView
-            android:id="@+id/seekbar_humidity_tag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/seekbar_humidity_tag"
-            android:textSize="25sp"
-            android:layout_margin="@dimen/normal_margin"
-            />
-        <SeekBar
-            android:id="@+id/seekbar_humidity_threshold"
-            android:tooltipText="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="20dp"
-            android:maxHeight="30dp"
-            android:layout_margin="@dimen/normal_margin"
-            />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/water1" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/degree" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="@drawable/water" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:srcCompat="@drawable/water2" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:srcCompat="@drawable/draisine" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
