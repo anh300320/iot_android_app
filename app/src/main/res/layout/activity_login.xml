@@ -4,89 +4,170 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="40px"
+    android:paddingTop="30px"
+
     tools:context=".LoginActivity">
 
-    <LinearLayout
-        android:id="@+id/login_email_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="254dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        >
-        <TextView
-            android:id="@+id/login_label_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/login_email"
-            android:textAlignment="viewStart"
-            android:layout_margin="@dimen/normal_margin"
-            android:labelFor="@id/login_input_email"/>
+        app:srcCompat="@drawable/watering" />
 
-        <EditText
-            android:id="@+id/login_input_email"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/login_label_email"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/normal_margin"
-            android:autofillHints=""
-            android:inputType="textEmailAddress" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/login_password_section"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/login_email_section"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30px"
+        android:text="SMART GARDEN"
+        android:textColor="#89CFF0"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
-        >
-        <TextView
-            android:id="@+id/login_label_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/login_password"
-            android:textAlignment="viewStart"
-            android:layout_margin="@dimen/normal_margin"
-            android:labelFor="@id/login_input_password"/>
+    <TextView
+        android:id="@+id/login_label_email"
+        android:layout_width="wrap_content"
 
-        <EditText
-            android:id="@+id/login_input_password"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/login_label_email"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/normal_margin"
-            android:autofillHints=""
-            android:inputType="textPassword"
-            />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="Email"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName" />
 
-    </LinearLayout>
+    <EditText
+        android:id="@+id/login_input_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBaseline_toBaselineOf="@+id/login_label_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/login_label_email" />
+
+    <TextView
+        android:id="@+id/login_label_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="30dp"
+        android:text="@string/login_password"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/login_label_email"
+        app:layout_constraintTop_toBottomOf="@id/login_label_email" />
+
+    <EditText
+        android:id="@+id/login_input_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/login_label_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/login_label_password" />
+
+
+    <!--    <LinearLayout-->
+    <!--  -->
+    <!--        android:id="@+id/login_email_section"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        >-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/login_label_email"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            android:text="@string/login_email"-->
+    <!--            android:textAlignment="viewStart"-->
+    <!--            android:layout_margin="@dimen/normal_margin"-->
+    <!--            android:labelFor="@id/login_input_email"/>  -->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/login_input_email"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:layout_constraintLeft_toRightOf="@id/login_label_email"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintRight_toRightOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_margin="@dimen/normal_margin"-->
+    <!--            android:autofillHints=""-->
+    <!--            android:inputType="textEmailAddress" />-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/login_password_section"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/login_email_section"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+
+    <!--        >-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/login_label_password"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            android:text="@string/login_password"-->
+    <!--            android:textAlignment="viewStart"-->
+    <!--            android:layout_margin="@dimen/normal_margin"-->
+    <!--            android:labelFor="@id/login_input_password"/>-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/login_input_password"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:layout_constraintLeft_toRightOf="@id/login_label_email"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintRight_toRightOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_margin="@dimen/normal_margin"-->
+    <!--            android:autofillHints=""-->
+    <!--            android:inputType="textPassword"-->
+    <!--            />-->
+
+    <!--    </LinearLayout>-->
 
     <Button
         android:id="@+id/login_button"
-        android:text="@string/login_btn_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/login_password_section"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="@dimen/normal_margin">
+
+
+        android:layout_marginTop="50px"
+        android:backgroundTint="#89CFF0"
+        android:text="@string/login_btn_text"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_label_password">
 
 
     </Button>
