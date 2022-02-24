@@ -63,8 +63,8 @@ public class Client {
         return response.body().getGardens();
     }
 
-    public GardenInfo sendControlCommand(String token, int gardenId, boolean isAuto, boolean isWatering, int humidityThreshold) throws IOException {
-        GardenControlRequest request = new GardenControlRequest(gardenId, isAuto, isWatering, humidityThreshold);
+    public GardenInfo sendControlCommand(String token, int gardenId, boolean isAuto, boolean isWatering, int humidityThreshold, int humidityTopThreshold) throws IOException {
+        GardenControlRequest request = new GardenControlRequest(gardenId, isAuto, isWatering, humidityThreshold, humidityTopThreshold);
         Call<GardenControlResponse> controlCall = server.gardenControl("Bearer " + token, request);
         Response<GardenControlResponse> response = controlCall.execute();
         if(response.body() == null) return null;

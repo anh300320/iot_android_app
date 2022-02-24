@@ -5,14 +5,16 @@ public class GardenControlRequest {
     private boolean auto;
     private boolean watering;
     private int humidityThreshold;
+    private int humidityTopThreshold;
 
     public GardenControlRequest(){}
 
-    public GardenControlRequest(int gardenId, boolean auto, boolean watering, int humidityThreshold) {
+    public GardenControlRequest(int gardenId, boolean auto, boolean watering, int humidityThreshold, int humidityTopThreshold) {
         this.gardenId = gardenId;
         this.auto = auto;
         this.watering = watering;
         this.humidityThreshold = humidityThreshold;
+        this.humidityTopThreshold = humidityTopThreshold;
     }
 
     public int getGardenId() {
@@ -45,5 +47,13 @@ public class GardenControlRequest {
 
     public void setHumidityThreshold(int humidityThreshold) {
         this.humidityThreshold = humidityThreshold;
+    }
+
+    public int getHumidityTopThreshold() {
+        return humidityTopThreshold;
+    }
+
+    public void setHumidityTopThreshold(int humidityTopThreshold) {
+        this.humidityTopThreshold = humidityTopThreshold;
     }
 }

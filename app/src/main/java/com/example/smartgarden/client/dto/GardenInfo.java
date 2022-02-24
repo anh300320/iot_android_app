@@ -8,19 +8,31 @@ public class GardenInfo {
     private boolean auto;
     private boolean watering;
     private int humidityThreshold;
+    private int humidityTopThreshold;
+    private String gardenName;
 
-    public GardenInfo(){}
+    public GardenInfo() {
+    }
 
-    public GardenInfo(int gardenId, boolean auto, boolean watering, int humidityThreshold) {
+    public GardenInfo(int gardenId, boolean auto, boolean watering, int humidityThreshold, int humidityTopThreshold) {
         super();
         this.gardenId = gardenId;
         this.auto = auto;
         this.watering = watering;
         this.humidityThreshold = humidityThreshold;
+        this.humidityTopThreshold = humidityTopThreshold;
     }
 
     public int getGardenId() {
         return gardenId;
+    }
+
+    public String getGardenName() {
+        return gardenName;
+    }
+
+    public void setGardenName(String gardenName) {
+        this.gardenName = gardenName;
     }
 
     public void setGardenId(int gardenId) {
@@ -51,9 +63,17 @@ public class GardenInfo {
         this.humidityThreshold = humidityThreshold;
     }
 
+    public int getHumidityTopThreshold() {
+        return humidityTopThreshold;
+    }
+
+    public void setHumidityTopThreshold(int humidityTopThreshold) {
+        this.humidityTopThreshold = humidityTopThreshold;
+    }
+
     @NonNull
     @Override
     public String toString() {
-        return String.valueOf(gardenId);
+        return String.format("%s (id: %d)", gardenName, gardenId);
     }
 }

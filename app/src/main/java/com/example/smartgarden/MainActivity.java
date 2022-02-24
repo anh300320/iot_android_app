@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -46,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private Switch autoWateringSwitch;
     private Switch waterControlSwitch;
     private TextView tvHumidityThresholdTag;
+    private TextView tvHumidityTopThresholdTag;
     private SeekBar seekBarHumidityThreshold;
+    private SeekBar seekBarHumidityTopThreshold;
+
+    private ImageView imageView1;
+    private ImageView imageView2;
 
     private GardenInfo currentGarden;
 
@@ -64,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         waterControlSwitch = findViewById(R.id.switch_watering_control);
         tvHumidityThresholdTag = findViewById(R.id.seekbar_humidity_tag);
         seekBarHumidityThreshold = findViewById(R.id.seekbar_humidity_threshold);
+        seekBarHumidityTopThreshold = findViewById(R.id.seekbar_humidity_top_threshold);
+        tvHumidityTopThresholdTag = findViewById(R.id.seekbar_humidity_top_tag);
+
+        imageView1 = findViewById(R.id.imageView7);
+        imageView2 = findViewById(R.id.imageView8);
 
         Intent intent = getIntent();
         this.token = intent.getStringExtra("token");
@@ -121,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 currentGarden.setAuto(isChecked);
                 currentGarden.setWatering(false);
                 visibilityReload();
-                controlGarden(token, currentGarden.getGardenId(), isChecked, false, currentGarden.getHumidityThreshold());
+                controlGarden(token, currentGarden.getGardenId(), isChecked, false, currentGarden.getHumidityThreshold(), currentGarden.getHumidityTopThreshold());
             }
         });
 
@@ -130,14 +141,15 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 currentGarden.setWatering(isChecked);
                 visibilityReload();
-                controlGarden(token, currentGarden.getGardenId(), currentGarden.isAuto(), isChecked, currentGarden.getHumidityThreshold());
+                controlGarden(token, currentGarden.getGardenId(), currentGarden.isAuto(), isChecked, currentGarden.getHumidityThreshold(), currentGarden.getHumidityTopThreshold());
             }
         });
 
         seekBarHumidityThreshold.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                String currentThreshold = getResources().getString(R.string.seekbar_humidity_tag) + " " + progress + "%";
+                tvHumidityThresholdTag.setText(currentThreshold);
             }
 
             @Override
@@ -147,10 +159,38 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                currentGarden.setHumidityThreshold(seekBar.getProgress());
-                String currentThreshold = getResources().getString(R.string.seekbar_humidity_tag) + " " + currentGarden.getHumidityThreshold() + "%";
-                tvHumidityThresholdTag.setText(currentThreshold);
-                controlGarden(token, currentGarden.getGardenId(), true, false, currentGarden.getHumidityThreshold());
+                int threshold = seekBar.getProgress();
+                currentGarden.setHumidityThreshold(threshold);
+                if(threshold > currentGarden.getHumidityTopThreshold()) {
+                    currentGarden.setHumidityTopThreshold(threshold);
+                    seekBarHumidityTopThreshold.setProgress(threshold);
+                }
+
+                controlGarden(token, currentGarden.getGardenId(), true, false, currentGarden.getHumidityThreshold(), currentGarden.getHumidityTopThreshold());
+            }
+        });
+
+        seekBarHumidityTopThreshold.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                String currentTopThreshold = getResources().getString(R.string.seekbar_humidity_top_tag) + " " + progress + "%";
+                tvHumidityTopThresholdTag.setText(currentTopThreshold);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int threshold = seekBar.getProgress();
+                currentGarden.setHumidityTopThreshold(seekBar.getProgress());
+                if(threshold < currentGarden.getHumidityThreshold()) {
+                    currentGarden.setHumidityThreshold(threshold);
+                    seekBarHumidityThreshold.setProgress(threshold);
+                }
+                controlGarden(token, currentGarden.getGardenId(), true, false, currentGarden.getHumidityThreshold(), currentGarden.getHumidityTopThreshold());
             }
         });
     }
@@ -159,16 +199,23 @@ public class MainActivity extends AppCompatActivity {
         autoWateringSwitch.setChecked(currentGarden.isAuto());
         waterControlSwitch.setChecked(currentGarden.isWatering());
         seekBarHumidityThreshold.setProgress(currentGarden.getHumidityThreshold());
+        seekBarHumidityTopThreshold.setProgress(currentGarden.getHumidityTopThreshold());
         String currentThreshold = getResources().getString(R.string.seekbar_humidity_tag) + " " + currentGarden.getHumidityThreshold() + "%";
         tvHumidityThresholdTag.setText(currentThreshold);
         if(currentGarden.isAuto()) {
             waterControlSwitch.setVisibility(View.VISIBLE);
             seekBarHumidityThreshold.setVisibility(View.VISIBLE);
             tvHumidityThresholdTag.setVisibility(View.VISIBLE);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setVisibility(View.VISIBLE);
         } else {
             waterControlSwitch.setVisibility(View.VISIBLE);
+            seekBarHumidityTopThreshold.setVisibility(View.GONE);
+            tvHumidityTopThresholdTag.setVisibility(View.GONE);
             seekBarHumidityThreshold.setVisibility(View.GONE);
             tvHumidityThresholdTag.setVisibility(View.GONE);
+            imageView1.setVisibility(View.GONE);
+            imageView2.setVisibility(View.GONE);
         }
     }
 
@@ -198,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         tvHumidityValue.setText(String.valueOf(data.getHumidity()));
                         tvTemperatureValue.setText(String.valueOf(data.getTemperature()));
+                        if(autoWateringSwitch.isChecked())
                         waterControlSwitch.setChecked(data.isWatering());
                     }
                 });
@@ -237,13 +285,13 @@ public class MainActivity extends AppCompatActivity {
         return webSocketClient;
     }
 
-    private void controlGarden(String token, int gardenId, boolean isAuto, boolean isWatering, int humidityTheshold) {
+    private void controlGarden(String token, int gardenId, boolean isAuto, boolean isWatering, int humidityTheshold, int humidityTopThreshold) {
         @SuppressLint("StaticFieldLeak")
         AsyncTask controlGardenTask = new AsyncTask<String, Integer, GardenInfo>() {
             @Override
             protected GardenInfo doInBackground(String... objects) {
                 try {
-                    return client.sendControlCommand(token, gardenId, isAuto, isWatering, humidityTheshold);
+                    return client.sendControlCommand(token, gardenId, isAuto, isWatering, humidityTheshold, humidityTopThreshold);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
